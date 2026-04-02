@@ -117,7 +117,7 @@ export function AboutSection() {
         <div className="text-center mb-16">
           <h2 className="relative inline-block font-[family-name:var(--font-bebas-neue)] text-4xl md:text-6xl tracking-wider text-foreground">
             About Me
-            <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+            <span className="absolute -bottom-2 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary to-transparent" />
           </h2>
         </div>
 
@@ -130,7 +130,7 @@ export function AboutSection() {
               <div className="absolute inset-3 rounded-full border-2 border-primary/50 animate-spin" style={{ animationDuration: "15s", animationDirection: "reverse" }} />
               
               {/* Inner avatar area */}
-              <div className="absolute inset-6 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center overflow-hidden border-2 border-primary/30">
+              <div className="absolute inset-6 rounded-full bg-linear-to-br from-primary/20 to-accent/20 flex items-center justify-center overflow-hidden border-2 border-primary/30">
                 <div className="text-center">
                   <span className="font-[family-name:var(--font-bebas-neue)] text-6xl md:text-7xl text-primary">VB</span>
                 </div>
@@ -184,7 +184,7 @@ export function AboutSection() {
               className="relative p-6 bg-card border border-border rounded-lg text-center group hover:border-primary transition-all duration-300 card-glow overflow-hidden"
             >
               {/* Background decoration */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <stat.icon className="w-8 h-8 text-primary mx-auto mb-4" />
               <Counter target={stat.value} suffix={stat.suffix} />
