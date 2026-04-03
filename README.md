@@ -193,7 +193,6 @@ action="https://formspree.io/f/YOUR_FORM_ID"
 ## 👨‍💻 Author
 
 **Vivek Bhattacharya**
-- Manga Portfolio: [manga-portfolio.netlify.app](https://manga-portfolio.netlify.app)
 - Anime Portfolio: [anime-portfolio-mu.vercel.app](https://anime-portfolio-mu.vercel.app)
 - GitHub: [@vivekbhattacharya01-gif](https://github.com/vivekbhattacharya01-gif)
 - LinkedIn: [vivek-bhattacharya-9a661528a](https://www.linkedin.com/in/vivek-bhattacharya-9a661528a)
