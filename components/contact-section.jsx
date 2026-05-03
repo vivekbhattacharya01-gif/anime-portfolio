@@ -1,15 +1,16 @@
-"use client"
+'use client'
 
-import { useState, useRef, useEffect } from "react"
-import { Mail, Github, Linkedin, Send, CheckCircle } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useState, useRef, useEffect } from 'react'
+import { Mail, Github, Linkedin, Send, CheckCircle } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef(null)
 
+  // Trigger animation when section comes into view
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -27,7 +28,21 @@ export function ContactSection() {
     return () => observer.disconnect()
   }, [])
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const backgroundLines = [
+    { top: '10%', transform: 'rotate(1.2deg)' },
+    { top: '19%', transform: 'rotate(-0.1deg)' },
+    { top: '28%', transform: 'rotate(0.8deg)' },
+    { top: '37%', transform: 'rotate(-2.3deg)' },
+    { top: '46%', transform: 'rotate(-2.8deg)' },
+    { top: '55%', transform: 'rotate(-0.4deg)' },
+    { top: '64%', transform: 'rotate(-2.7deg)' },
+    { top: '73%', transform: 'rotate(-0.7deg)' },
+    { top: '82%', transform: 'rotate(0.9deg)' },
+    { top: '91%', transform: 'rotate(1.9deg)' },
+  ]
+
+  // Handle form submission via Formspree
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
 
@@ -35,21 +50,22 @@ export function ContactSection() {
     const formData = new FormData(form)
 
     try {
-      const response = await fetch("https://formspree.io/f/meepznqk", {
-        method: "POST",
+      const response = await fetch('https://formspree.io/f/meepznqk', {
+        method: 'POST',
         body: formData,
         headers: {
-          Accept: "application/json",
+          Accept: 'application/json',
         },
       })
 
       if (response.ok) {
         setIsSuccess(true)
         form.reset()
+        // Reset success message after 5 seconds
         setTimeout(() => setIsSuccess(false), 5000)
       }
-    } catch {
-      console.error("Form submission error")
+    } catch (error) {
+      console.error('Form submission error:', error)
     } finally {
       setIsSubmitting(false)
     }
@@ -61,41 +77,41 @@ export function ContactSection() {
       ref={sectionRef}
       className="relative py-24 md:py-32 overflow-hidden"
     >
-      {/* Background Speed Lines */}
+      {/* Animated background speed lines */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(10)].map((_, i) => (
+        {backgroundLines.map((line, i) => (
           <div
-            key={i}
+            key={`speed-line-${i}`}
             className="absolute h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"
             style={{
-              top: `${10 + i * 9}%`,
+              top: line.top,
               left: 0,
               right: 0,
-              transform: `rotate(${-3 + Math.random() * 6}deg)`,
+              transform: line.transform,
             }}
           />
         ))}
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
+        {/* Section header with animated text */}
         <div className="text-center mb-16">
           <h2
             className={cn(
-              "font-[family-name:var(--font-bebas-neue)] text-4xl md:text-6xl tracking-wider text-foreground transition-all duration-1000",
-              isVisible ? "opacity-100" : "opacity-0"
+              'font-[family-name:var(--font-bebas-neue)] text-4xl md:text-6xl tracking-wider text-foreground transition-all duration-1000',
+              isVisible ? 'opacity-100' : 'opacity-0'
             )}
           >
-            {"Let's Work Together".split("").map((char, i) => (
+            {"Let's Work Together".split('').map((char, i) => (
               <span
-                key={i}
+                key={`char-${i}`}
                 className={cn(
-                  "inline-block transition-all duration-300",
-                  char === " " ? "w-2 md:w-4" : ""
+                  'inline-block transition-all duration-300',
+                  char === ' ' ? 'w-2 md:w-4' : ''
                 )}
                 style={{
                   transitionDelay: `${i * 30}ms`,
-                  transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                  transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                   opacity: isVisible ? 1 : 0,
                 }}
               >
@@ -104,22 +120,22 @@ export function ContactSection() {
             ))}
           </h2>
           <p className="mt-4 font-[family-name:var(--font-share-tech-mono)] text-sm text-muted-foreground">
-            {"<"} Mission Brief {"/>"}
+            {'< Mission Brief />'}
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Contact Form */}
+            {/* Contact form */}
             <div
               className={cn(
-                "relative bg-card border border-border rounded-lg p-8 transition-all duration-700 delay-200",
+                'relative bg-card border border-border rounded-lg p-8 transition-all duration-700 delay-200',
                 isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-10"
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 -translate-x-10'
               )}
             >
-              {/* Terminal Header */}
+              {/* Terminal-style header */}
               <div className="flex items-center gap-2 mb-6 pb-4 border-b border-border">
                 <div className="w-3 h-3 rounded-full bg-red-500" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500" />
@@ -130,6 +146,7 @@ export function ContactSection() {
               </div>
 
               {isSuccess ? (
+                // Success message
                 <div className="flex flex-col items-center justify-center py-12 text-center">
                   <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4 pulse-glow">
                     <CheckCircle className="w-8 h-8 text-green-500" />
@@ -142,13 +159,14 @@ export function ContactSection() {
                   </p>
                 </div>
               ) : (
+                // Contact form fields
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label
                       htmlFor="name"
                       className="block font-[family-name:var(--font-share-tech-mono)] text-xs text-primary uppercase tracking-wider mb-2"
                     >
-                      {">"} Name_
+                      {'> Name_'}
                     </label>
                     <input
                       type="text"
@@ -165,7 +183,7 @@ export function ContactSection() {
                       htmlFor="email"
                       className="block font-[family-name:var(--font-share-tech-mono)] text-xs text-primary uppercase tracking-wider mb-2"
                     >
-                      {">"} Email_
+                      {'> Email_'}
                     </label>
                     <input
                       type="email"
@@ -182,7 +200,7 @@ export function ContactSection() {
                       htmlFor="message"
                       className="block font-[family-name:var(--font-share-tech-mono)] text-xs text-primary uppercase tracking-wider mb-2"
                     >
-                      {">"} Message_
+                      {'> Message_'}
                     </label>
                     <textarea
                       id="message"
@@ -215,16 +233,16 @@ export function ContactSection() {
               )}
             </div>
 
-            {/* Contact Info */}
+            {/* Contact information sidebar */}
             <div
               className={cn(
-                "space-y-6 transition-all duration-700 delay-400",
+                'space-y-6 transition-all duration-700 delay-400',
                 isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-10"
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 translate-x-10'
               )}
             >
-              {/* Email Card */}
+              {/* Email card */}
               <div className="bg-card border border-border rounded-lg p-6 group hover:border-primary transition-all duration-300 card-glow">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -244,7 +262,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              {/* Social Links */}
+              {/* Social links */}
               <div className="bg-card border border-border rounded-lg p-6">
                 <h3 className="font-[family-name:var(--font-share-tech-mono)] text-xs text-muted-foreground uppercase tracking-wider mb-4">
                   Connect With Me
@@ -275,7 +293,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              {/* Availability Status */}
+              {/* Availability status */}
               <div className="bg-card border border-border rounded-lg p-6">
                 <div className="flex items-center gap-3">
                   <div className="relative w-3 h-3">
