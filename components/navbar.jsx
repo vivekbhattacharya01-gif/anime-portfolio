@@ -1,40 +1,45 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import { useTheme } from "next-themes"
-import { Sun, Moon, Menu, X } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useState, useEffect } from 'react'
+import { useTheme } from 'next-themes'
+import { Sun, Moon, Menu, X } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
+// Navigation menu items
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
-  { href: "#contact", label: "Contact" },
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#contact', label: 'Contact' },
 ]
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
+  const [activeSection, setActiveSection] = useState('home')
   const [isTransitioning, setIsTransitioning] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
+  // Mark component as mounted to prevent hydration issues
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  // Handle scroll events to update navbar state and active section
   useEffect(() => {
     const handleScroll = () => {
+      // Show background when scrolled down
       setIsScrolled(window.scrollY > 50)
-      
-      // Update active section based on scroll position
-      const sections = navLinks.map(link => link.href.replace("#", ""))
+
+      // Highlight active section based on scroll position
+      const sections = navLinks.map((link) => link.href.replace('#', ''))
       for (const section of sections.reverse()) {
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
+          // If section is near top of viewport, mark it as active
           if (rect.top <= 100) {
             setActiveSection(section)
             break
@@ -43,29 +48,31 @@ export function Navbar() {
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Smooth theme transition with visual effect
   const handleThemeToggle = () => {
     setIsTransitioning(true)
     setTimeout(() => {
-      setTheme(theme === "dark" ? "light" : "dark")
+      setTheme(theme === 'dark' ? 'light' : 'dark')
       setTimeout(() => setIsTransitioning(false), 500)
     }, 100)
   }
 
-  const scrollToSection = (href: string) => {
+  // Smooth scroll to specific section
+  const scrollToSection = (href) => {
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: 'smooth' })
     }
     setIsMobileMenuOpen(false)
   }
 
   return (
     <>
-      {/* Theme Transition Overlay */}
+      {/* Theme transition overlay effect */}
       {isTransitioning && (
         <div className="fixed inset-0 z-[100] pointer-events-none">
           <div className="absolute inset-0 bg-primary ink-wash origin-center" />
@@ -74,19 +81,19 @@ export function Navbar() {
 
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           isScrolled
-            ? "py-3 backdrop-blur-xl bg-background/80 border-b border-border/50"
-            : "py-5 bg-transparent"
+            ? 'py-3 backdrop-blur-xl bg-background/80 border-b border-border/50'
+            : 'py-5 bg-transparent'
         )}
       >
         <div className="container mx-auto px-4 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo / Branding */}
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault()
-              scrollToSection("#home")
+              scrollToSection('#home')
             }}
             className="group relative"
           >
@@ -101,7 +108,7 @@ export function Navbar() {
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
           </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation Menu */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
@@ -112,27 +119,27 @@ export function Navbar() {
                   scrollToSection(link.href)
                 }}
                 className={cn(
-                  "relative font-[family-name:var(--font-share-tech-mono)] text-sm uppercase tracking-wider transition-colors",
-                  activeSection === link.href.replace("#", "")
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                  'relative font-[family-name:var(--font-share-tech-mono)] text-sm uppercase tracking-wider transition-colors',
+                  activeSection === link.href.replace('#', '')
+                    ? 'text-primary'
+                    : 'text-muted-foreground hover:text-foreground'
                 )}
               >
                 {link.label}
-                {activeSection === link.href.replace("#", "") && (
+                {activeSection === link.href.replace('#', '') && (
                   <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary pulse-glow" />
                 )}
               </a>
             ))}
 
-            {/* Theme Toggle */}
+            {/* Theme toggle button */}
             {mounted && (
               <button
                 onClick={handleThemeToggle}
                 className="relative w-10 h-10 rounded-full border-2 border-primary/50 flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all duration-300 group"
                 aria-label="Toggle theme"
               >
-                {theme === "dark" ? (
+                {theme === 'dark' ? (
                   <Sun className="w-5 h-5 text-accent group-hover:rotate-180 transition-transform duration-500" />
                 ) : (
                   <Moon className="w-5 h-5 text-primary group-hover:rotate-12 transition-transform duration-300" />
@@ -141,21 +148,24 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Controls */}
           <div className="flex md:hidden items-center gap-4">
+            {/* Mobile theme toggle */}
             {mounted && (
               <button
                 onClick={handleThemeToggle}
                 className="w-10 h-10 rounded-full border-2 border-primary/50 flex items-center justify-center"
                 aria-label="Toggle theme"
               >
-                {theme === "dark" ? (
+                {theme === 'dark' ? (
                   <Sun className="w-5 h-5 text-accent" />
                 ) : (
                   <Moon className="w-5 h-5 text-primary" />
                 )}
               </button>
             )}
+
+            {/* Mobile menu toggle button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="w-10 h-10 rounded-lg border-2 border-primary/50 flex items-center justify-center hover:border-primary transition-colors"
@@ -171,26 +181,30 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-40 md:hidden transition-all duration-300",
-          isMobileMenuOpen ? "visible" : "invisible"
+          'fixed inset-0 z-40 md:hidden transition-all duration-300',
+          isMobileMenuOpen ? 'visible' : 'invisible'
         )}
       >
+        {/* Backdrop */}
         <div
           className={cn(
-            "absolute inset-0 bg-background/95 backdrop-blur-xl transition-opacity duration-300",
-            isMobileMenuOpen ? "opacity-100" : "opacity-0"
+            'absolute inset-0 bg-background/95 backdrop-blur-xl transition-opacity duration-300',
+            isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
           )}
           onClick={() => setIsMobileMenuOpen(false)}
         />
+
+        {/* Mobile menu panel */}
         <div
           className={cn(
-            "absolute right-0 top-0 h-full w-72 bg-card border-l border-border p-8 pt-24 transition-transform duration-300",
-            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            'absolute right-0 top-0 h-full w-72 bg-card border-l border-border p-8 pt-24 transition-transform duration-300',
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           )}
         >
+          {/* Mobile navigation links */}
           <div className="flex flex-col gap-6">
             {navLinks.map((link, index) => (
               <a
@@ -201,10 +215,10 @@ export function Navbar() {
                   scrollToSection(link.href)
                 }}
                 className={cn(
-                  "font-[family-name:var(--font-bebas-neue)] text-3xl tracking-wider transition-all duration-300",
-                  activeSection === link.href.replace("#", "")
-                    ? "text-primary translate-x-2"
-                    : "text-foreground hover:text-primary hover:translate-x-2"
+                  'font-[family-name:var(--font-bebas-neue)] text-3xl tracking-wider transition-all duration-300',
+                  activeSection === link.href.replace('#', '')
+                    ? 'text-primary translate-x-2'
+                    : 'text-foreground hover:text-primary hover:translate-x-2'
                 )}
                 style={{ transitionDelay: `${index * 50}ms` }}
               >
@@ -213,7 +227,7 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Decorative Elements */}
+          {/* Footer decoration */}
           <div className="absolute bottom-8 left-8 right-8">
             <div className="h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
             <p className="mt-4 font-[family-name:var(--font-share-tech-mono)] text-xs text-muted-foreground text-center">
