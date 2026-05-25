@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Mail, Github, Linkedin, Send, CheckCircle } from 'lucide-react'
+import { Mail, Github, Linkedin, Send, CheckCircle, Download } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function ContactSection() {
@@ -291,6 +291,21 @@ export function ContactSection() {
                     </span>
                   </a>
                 </div>
+              </div>
+
+              <div className="bg-card border border-border rounded-lg p-6">
+                <h3 className="font-[family-name:var(--font-share-tech-mono)] text-xs text-muted-foreground uppercase tracking-wider mb-4">
+                  Resume
+                </h3>
+                <a
+                  href="https://drive.google.com/file/d/1gAPSnCofzFXOGZ9hs4C5kz_WugiPWvvX/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-3 bg-primary text-primary-foreground border border-primary rounded-lg hover:bg-primary/90 transition-all"
+                >
+                  <Download className="w-5 h-5" />
+                  View Resume
+                </a>
               </div>
 
               {/* Availability status */}
