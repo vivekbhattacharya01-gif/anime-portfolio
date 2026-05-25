@@ -142,7 +142,7 @@ export function HeroSection() {
           </button>
 
           <a
-            href="https://drive.google.com/file/d/1ZxFBELyxLqQleWKmOAagFaZDXPArBkKl/view?usp=sharing"
+            href="https://drive.google.com/file/d/1gAPSnCofzFXOGZ9hs4C5kz_WugiPWvvX/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative px-8 py-4 bg-primary text-primary-foreground font-[family-name:var(--font-share-tech-mono)] text-sm uppercase tracking-wider overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/50"
