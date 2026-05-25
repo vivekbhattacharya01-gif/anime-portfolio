@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { GraduationCap, Shield, Sparkles } from 'lucide-react'
+import { ExternalLink, GraduationCap, Shield, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 // My education, work experience, and certifications
@@ -23,6 +23,30 @@ const experiences = [
       'Worked on identifying web vulnerabilities and reporting security exploits as part of a structured bug bounty internship program under AICTE.',
     icon: Shield,
     type: 'work',
+    link: 'https://drive.google.com/file/d/1WtIs0bqc2XAlK8bL47b2jC8LrXY9NWc-/view?usp=sharing',
+    linkLabel: 'View certificate',
+  },
+  {
+    year: '2025',
+    title: 'Cyber Security Certification',
+    place: 'TCS iON',
+    description:
+      'Earned a TCS iON certification in Cyber Security, validating knowledge of vulnerability assessment and secure web practices.',
+    icon: Sparkles,
+    type: 'certification',
+    link: 'https://drive.google.com/file/d/1BObzFkLHTUxwVOYYkKkc7GsxdYx5mpvG/view?usp=sharing',
+    linkLabel: 'View certificate',
+  },
+  {
+    year: '2026',
+    title: 'Generative AI Certification',
+    place: 'TCS iON',
+    description:
+      'Completed a TCS iON Generative AI certification, demonstrating applied understanding of AI concepts and modern generative model workflows.',
+    icon: Sparkles,
+    type: 'certification',
+    link: 'https://drive.google.com/file/d/10FpWT7E7aE3Kzll4Rk8LwPddTzlpSe5D/view?usp=sharing',
+    linkLabel: 'View certificate',
   },
   {
     year: 'Mar 2026',
@@ -32,6 +56,8 @@ const experiences = [
       'Completed a certified Generative AI program under NASSCOM\'s Skill Development initiative, gaining hands-on exposure to modern AI tools and concepts.',
     icon: Sparkles,
     type: 'certification',
+    link: 'https://drive.google.com/file/d/1i5MsSEsgVp0_h6ychp4GGZkM8Xd9guUY/view?usp=drive_link',
+    linkLabel: 'View certificate',
   },
 ]
 
@@ -171,6 +197,18 @@ export function ExperienceSection() {
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {exp.description}
                   </p>
+
+                  {exp.link ? (
+                    <a
+                      href={exp.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent"
+                    >
+                      {exp.linkLabel || 'View certificate'}
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  ) : null}
 
                   {/* Corner decoration */}
                   <div
