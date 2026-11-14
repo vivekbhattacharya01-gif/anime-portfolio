@@ -298,7 +298,7 @@ export function ContactSection() {
                   Resume
                 </h3>
                 <a
-                  href="https://drive.google.com/file/d/1gAPSnCofzFXOGZ9hs4C5kz_WugiPWvvX/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1pXnWAlq8RME_yI6VA5bEktlc7E1E9hOB/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-3 bg-primary text-primary-foreground border border-primary rounded-lg hover:bg-primary/90 transition-all"
