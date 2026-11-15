@@ -269,7 +269,7 @@ export function ContactSection() {
                 </h3>
                 <div className="flex gap-4">
                   <a
-                    href="https://github.com/vivekbhattacharya01"
+                    href="https://github.com/vivekbhattacharya01-gif"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 px-4 py-3 bg-background border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all group"

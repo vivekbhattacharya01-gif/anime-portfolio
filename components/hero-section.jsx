@@ -162,7 +162,7 @@ export function HeroSection() {
           )}
         >
           <a
-            href="https://github.com/vivekbhattacharya01"
+            href="https://github.com/vivekbhattacharya01-gif"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative w-12 h-12 rounded-full border-2 border-border flex items-center justify-center hover:border-primary transition-all duration-300"
