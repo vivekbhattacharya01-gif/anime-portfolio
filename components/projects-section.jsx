@@ -55,6 +55,56 @@ const projects = [
     github: 'https://github.com/vivekbhattacharya01-gif/CodeWave',
     gradient: 'from-emerald-500 to-teal-500',
   },
+  {
+    name: 'Login System',
+    subtitle: 'Full-Stack Authentication App',
+    description:
+      'A full-stack authentication app built with React 19, Vite, Node.js, Express.js, MongoDB, and JWT. It includes secure registration, login, protected routes, password hashing, and persistent session restoration for a modern auth workflow.',
+    techStack: [
+      'React 19',
+      'Vite',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'JWT',
+      'bcryptjs',
+      'Responsive UI',
+    ],
+    liveDemo: 'https://login-system-seven-pearl.vercel.app/',
+    github: 'https://github.com/vivekbhattacharya01-gif/Login-system',
+    personal: true,
+    gradient: 'from-violet-500 to-indigo-500',
+  },
+  {
+    name: 'ClinicMate',
+    subtitle: 'AI Healthcare Assistant',
+    description:
+      'An AI-powered healthcare assistant built using TARS to answer patient queries, identify new and existing patients, guide appointment requests, and deliver a conversational experience with workflow-driven lead capture and patient engagement.',
+    techStack: ['TARS AI', 'Conversational AI', 'Prompt Engineering', 'Workflow Design', 'Knowledge Base'],
+    liveDemo: 'https://neoagent.hellotars.com/chat/fcNwzt5z',
+    github: 'https://github.com/vivekbhattacharya01-gif/ClinicMate',
+    personal: true,
+    gradient: 'from-rose-500 to-red-500',
+  },
+  {
+    name: 'ShineUp',
+    subtitle: 'AI-Powered Automotive Detailing Marketplace',
+    description:
+      'A premium AI-powered marketplace helping vehicle owners detect paint and condition issues using AI and connect with verified detailing professionals for bookings, consultations, and trusted service recommendations.',
+    techStack: [
+      'React 18',
+      'Vite',
+      'Tailwind CSS',
+      'Framer Motion',
+      'Radix UI',
+      'AI Analysis',
+      'Marketplace UX',
+    ],
+    liveDemo: 'https://shine-up.netlify.app/',
+    github: 'https://github.com/vivekbhattacharya01-gif/ShineUp',
+    personal: true,
+    gradient: 'from-yellow-500 to-amber-500',
+  },
 ]
 
 export function ProjectsSection() {
